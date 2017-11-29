@@ -1,5 +1,5 @@
 //
-//  ItemsList.swift
+//  TaskCell.swift
 //  ToDoList
 //
 //  Created by Ruslan on 28/11/2017.
@@ -8,6 +8,7 @@
 
 import UIKit
 
-class TasksListTableController: UIViewController {
+class ListCell: UITableViewCell {
     
+    @IBOutlet weak var nameCell: UILabel!
 }
