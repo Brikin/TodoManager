@@ -18,6 +18,7 @@
 		447B927D1FCD600600CBB18F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B927C1FCD600600CBB18F /* Task.swift */; };
 		447B927F1FCD9DA900CBB18F /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B927E1FCD9DA900CBB18F /* ListCell.swift */; };
 		447B92811FCDACBD00CBB18F /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B92801FCDACBD00CBB18F /* TaskCell.swift */; };
+		447B92871FCEEF3D00CBB18F /* ShowCompletedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B92861FCEEF3D00CBB18F /* ShowCompletedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		447B927C1FCD600600CBB18F /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		447B927E1FCD9DA900CBB18F /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		447B92801FCDACBD00CBB18F /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		447B92861FCEEF3D00CBB18F /* ShowCompletedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCompletedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				447B927C1FCD600600CBB18F /* Task.swift */,
 				447B927E1FCD9DA900CBB18F /* ListCell.swift */,
 				447B92801FCDACBD00CBB18F /* TaskCell.swift */,
+				447B92861FCEEF3D00CBB18F /* ShowCompletedCell.swift */,
 				447B927A1FCD5F9200CBB18F /* ViewControllers */,
 			);
 			path = ToDoList;
@@ -175,6 +178,7 @@
 				447B92771FCD5E0E00CBB18F /* TasksListTableControllert.swift in Sources */,
 				444F54101FCD4CF30057E6C7 /* ViewController.swift in Sources */,
 				447B92811FCDACBD00CBB18F /* TaskCell.swift in Sources */,
+				447B92871FCEEF3D00CBB18F /* ShowCompletedCell.swift in Sources */,
 				444F540E1FCD4CF30057E6C7 /* AppDelegate.swift in Sources */,
 				447B927D1FCD600600CBB18F /* Task.swift in Sources */,
 				447B92751FCD5D5400CBB18F /* StartScreen.swift in Sources */,

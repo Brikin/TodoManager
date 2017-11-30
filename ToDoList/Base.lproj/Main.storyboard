@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ahz-wz-PIH">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,6 @@
         <!--Tasks Details Controller-->
         <scene sceneID="3lT-ae-Vox">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zMl-DU-V62" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="aBa-Zw-SwT" customClass="TasksDetailsController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bW-Ve-4VJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -40,8 +39,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="yrS-Pk-BKh"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zMl-DU-V62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1653.5999999999999" y="124.58770614692655"/>
+            <point key="canvasLocation" x="2402" y="125"/>
         </scene>
         <!--Tasks List Table Controller-->
         <scene sceneID="WUd-yB-u4B">
@@ -78,26 +78,45 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ODd-HL-z4a">
-                                                    <rect key="frame" x="15" y="0.0" width="104" height="22"/>
+                                                    <rect key="frame" x="61" y="0.0" width="104" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpr-rw-fD7">
-                                                    <rect key="frame" x="15" y="21" width="119" height="22"/>
+                                                    <rect key="frame" x="61" y="21" width="119" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZT-Zg-8Jj">
+                                                    <rect key="frame" x="7" y="6" width="46" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateTaskLabel" destination="wpr-rw-fD7" id="yY8-Nl-HIN"/>
                                             <outlet property="nameTaskLabel" destination="ODd-HL-z4a" id="62c-GI-DKf"/>
-                                            <segue destination="aBa-Zw-SwT" kind="show" identifier="Details" id="4gi-m3-9Eo"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShowCompletedCell" id="TNq-k5-aG9" customClass="ShowCompletedCell" customModule="ToDoList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TNq-k5-aG9" id="w7F-Gq-5bh">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0H-sx-JAC">
+                                                    <rect key="frame" x="164" y="6" width="46" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -133,19 +152,45 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <tabBar hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BEY-2f-PUk">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Today" id="4Aj-e4-Yvw"/>
+                                    <tabBarItem title="Tomorrow" id="G3d-H6-m46"/>
+                                    <tabBarItem title="Next Week" id="xPg-69-NLL"/>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="GQ7-2B-fou" id="FNW-qo-cyy"/>
+                                </connections>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="JxY-cZ-ILK"/>
                     </view>
-                    <navigationItem key="navigationItem" id="lMn-bt-2AE"/>
+                    <navigationItem key="navigationItem" id="lMn-bt-2AE">
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="plain" id="oVk-fu-JPB">
+                            <connections>
+                                <action selector="doneTabBar:" destination="GQ7-2B-fou" id="HfK-jr-aMS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="doneButtonForTabBar" destination="oVk-fu-JPB" id="OpF-tA-Js7"/>
+                        <outlet property="tabBarToday" destination="4Aj-e4-Yvw" id="VX0-zq-2F2"/>
+                        <outlet property="tabBarTomorrow" destination="G3d-H6-m46" id="SxJ-pm-o6f"/>
+                        <outlet property="tabBarView" destination="BEY-2f-PUk" id="rYd-6n-3Ir"/>
+                        <outlet property="tabBarWeek" destination="xPg-69-NLL" id="zV5-3E-IHS"/>
                         <outlet property="tableTask" destination="qhO-YJ-bB6" id="uqt-Hr-mXg"/>
                         <outlet property="textField" destination="NJK-wN-9aW" id="02V-5n-ZT9"/>
+                        <outlet property="toolbarView" destination="wVZ-eU-vGN" id="lYD-iB-EwZ"/>
+                        <segue destination="aBa-Zw-SwT" kind="show" identifier="Details" id="gHr-GW-DMu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bn4-Lt-wrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="880.79999999999995" y="124.58770614692655"/>
+            <point key="canvasLocation" x="1202" y="125"/>
         </scene>
         <!--Start Screen-->
         <scene sceneID="tne-QT-ifu">
@@ -161,7 +206,7 @@
                                 <items>
                                     <barButtonItem title="TextField" style="plain" id="Kjz-l8-1Ie">
                                         <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="kQf-Qf-3hr">
-                                            <rect key="frame" x="16" y="7" width="262" height="30"/>
+                                            <rect key="frame" x="16" y="7" width="25" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -253,10 +298,13 @@
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JuD-Su-d6s">
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="awd-Ye-gyd"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VcX-h4-4q3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1014" y="160"/>
+            <point key="canvasLocation" x="-953" y="125"/>
         </scene>
     </scenes>
 </document>

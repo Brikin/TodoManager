@@ -29,11 +29,50 @@ class Task: NSObject {
     
 //    func encode decode
     
+    //    func encode(with aCoder: NSCoder) {
+    //        aCoder.encode(name, forKey: "name")
+    //        aCoder.encode(date, forKey: "date")
+    //        aCoder.encode(finished, forKey: "finished")
+    //        aCoder.encode(finished, forKey: "category")
+    //        aCoder.encode(section, forKey: "section")
+    //
+    //
+    //    }
+    //
+    //    required init(coder aDecoder: NSCoder) {
+    //        name = aDecoder.decodeObject(forKey: "name") as! String
+    //        date = aDecoder.decodeObject(forKey: "date") as! String
+    //        finished = aDecoder.decodeBool(forKey: "finished")
+    //        category = aDecoder.decodeObject(forKey: "category") as? String ?? "inbox"
+    //        section = aDecoder.decodeObject(forKey: "section") as? String ?? "OVERDUE"
+    //        super.init()
+    //    }
+    
 }
 
 class TaskStore {
     
     var allTasks = [Task]()
+    
+    // Save Load data
+    
+    //    init() {
+    //        if let archivedItems = NSKeyedUnarchiver.unarchiveObject(withFile: itemArchiveURL.path) as? [Item] {
+    //            allItems = archivedItems
+    //
+    //        }
+    //    }
+    
+    //    let itemArchiveURL: URL = {
+    //        let documentsDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    //        let documentDerictory = documentsDirectories.first!
+    //        return documentDerictory.appendingPathComponent("items.archive")
+    //    }()
+    //
+    //    func saveChanges() -> Bool {
+    //        print("saving items to: \(itemArchiveURL.path)")
+    //        return NSKeyedArchiver.archiveRootObject(allItems, toFile: itemArchiveURL.path)
+    //    }
     
     func createTask(name: String, list: String) -> Task {
         let newTask = Task(name: name,

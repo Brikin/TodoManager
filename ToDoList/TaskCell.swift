@@ -14,4 +14,5 @@ class TaskCell: UITableViewCell {
     
     @IBOutlet weak var dateTaskLabel: UILabel!
     
+    
 }
