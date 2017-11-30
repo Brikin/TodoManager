@@ -52,6 +52,7 @@ class StartScreen: UIViewController {
         
         
     }
+    
 }
 
 extension StartScreen: UITableViewDelegate {
@@ -74,6 +75,38 @@ extension StartScreen: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.sectionsTitle[section]
     }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if section == 0 {
+            
+        } else {
+            
+            let path = UIBezierPath()
+            path.move(to: CGPoint(x: 10, y: 6))
+            path.addLine(to: CGPoint(x: 365, y: 6))
+            
+            // Create a `CAShapeLayer` that uses that `UIBezierPath`:
+            
+            let shapeLayer = CAShapeLayer()
+            shapeLayer.path = path.cgPath
+            shapeLayer.strokeColor = UIColor.black.cgColor
+            shapeLayer.lineWidth = 0.2
+
+            (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.white
+            (view as! UITableViewHeaderFooterView).textLabel?.textAlignment = NSTextAlignment.center
+            (view as! UITableViewHeaderFooterView).textLabel?.font = UIFont(name: "Arial", size: 12.0)
+            (view as! UITableViewHeaderFooterView).textLabel?.backgroundColor = UIColor.white
+            (view as! UITableViewHeaderFooterView).layer.addSublayer(shapeLayer)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0.1
+        }
+        return 10
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sectionsTitle.count

@@ -33,13 +33,13 @@ class TasksListTableController: UIViewController {
     
     override func viewDidLoad() {
         
-
+        self.navigationItem.title = listIdentifier
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.rightBarButtonItem?.title = ""
-  
-        self.navigationItem.title = listIdentifier
-        let sortByList = taskStore.taskForList(listName: "\(listIdentifier)")
-        sortBySections(list: sortByList)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        refresh()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -56,29 +56,7 @@ class TasksListTableController: UIViewController {
     @IBOutlet weak var tabBarToday: UITabBarItem!
     @IBOutlet weak var tabBarTomorrow: UITabBarItem!
     @IBOutlet weak var tabBarWeek: UITabBarItem!
-    
     @IBOutlet weak var doneButtonForTabBar: UIBarButtonItem!
-    
-    @IBAction func dateToday(_ sender: Any) {
-        selectedTask.date = Date()
-        tableTask.reloadData()
-    }
-    
-    
-    @IBAction func dateTomorrow(_ sender: Any) {
-        guard let selectedTask = self.selectedTask else { return }
-        self.selectedTask.date = taskStore.changeDate(date: selectedTask.date, value: "tomorrow")
-        tableTask.reloadData()
-    }
-    
-    
-    @IBAction func dateWeek(_ sender: Any) {
-        guard let selectedTask = self.selectedTask else { return }
-        self.selectedTask.date = taskStore.changeDate(date: selectedTask.date, value: "week")
-        tableTask.reloadData()
-    }
-    
-    
     
     @IBAction func doneTabBar(_ sender: Any) {
         tabBarView.isHidden = true
@@ -96,13 +74,11 @@ class TasksListTableController: UIViewController {
         textField.text = nil
         textField.isEnabled = false
         self.navigationController?.isNavigationBarHidden = false
-        tableTask.reloadData()
+        self.tableTask.reloadData()
+        
+        
     }
-    
-    
-    
-    
-    
+
     func sortBySections(list: [Task])  {
         overdue = taskStore.taskForDate(list: list, dateDue: Date(), range: "overdue")
         if !overdue.isEmpty  {
@@ -135,9 +111,14 @@ class TasksListTableController: UIViewController {
         }
 //        sectionsTitle.append("")
 //        taskInSection.append([Task]())
-        tableTask.reloadData()
+       // tableTask.reloadData()
     }
     
+    func refresh() {
+        let sortByList = taskStore.taskForList(listName: "\(listIdentifier)")
+        sortBySections(list: sortByList)
+        self.tableTask.reloadData()
+    }
 }
 
 extension TasksListTableController: UITabBarDelegate {
@@ -145,19 +126,18 @@ extension TasksListTableController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item == tabBarToday {
             selectedTask.date = Date()
-            tableTask.reloadData()
+            
         } else if item == tabBarTomorrow {
             guard let selectedTask = self.selectedTask else { return }
             self.selectedTask.date = taskStore.changeDate(date: selectedTask.date, value: "tomorrow")
-            tableTask.reloadData()
+            
         } else if item == tabBarWeek {
             guard let selectedTask = self.selectedTask else { return }
             self.selectedTask.date = taskStore.changeDate(date: selectedTask.date, value: "week")
-            tableTask.reloadData()
+            
         }
-        
+        refresh()
     }
-    
 }
 
 extension TasksListTableController: UITableViewDelegate {
@@ -165,9 +145,7 @@ extension TasksListTableController: UITableViewDelegate {
 }
 
 extension TasksListTableController: UITableViewDataSource {
-    
-    
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
@@ -239,11 +217,22 @@ extension TasksListTableController: UITableViewDataSource {
         
     }
     
-    
-    
-    
-    
-    
-    
-    
+     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let section = indexPath.section
+        let row = indexPath.row
+        
+        selectedTask = taskInSection[section][row]
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") {
+            (action: UITableViewRowAction, indexPath: IndexPath) in
+            self.taskStore.deleteTask(self.selectedTask)
+            self.refresh()
+        }
+
+        let share = UITableViewRowAction(style: .normal, title: "Details") {
+            (action, indexPath) in
+        }
+
+        share.backgroundColor = UIColor.lightGray
+        return [delete, share]
+    }
 }

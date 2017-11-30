@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tasks Details Controller-->
+        <!--Edit Task-->
         <scene sceneID="3lT-ae-Vox">
             <objects>
-                <viewController id="aBa-Zw-SwT" customClass="TasksDetailsController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Edit Task" id="aBa-Zw-SwT" customClass="TasksDetailsController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bW-Ve-4VJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,7 +41,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zMl-DU-V62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2402" y="125"/>
+            <point key="canvasLocation" x="1121" y="887"/>
         </scene>
         <!--Tasks List Table Controller-->
         <scene sceneID="WUd-yB-u4B">
@@ -185,12 +185,12 @@
                         <outlet property="tableTask" destination="qhO-YJ-bB6" id="uqt-Hr-mXg"/>
                         <outlet property="textField" destination="NJK-wN-9aW" id="02V-5n-ZT9"/>
                         <outlet property="toolbarView" destination="wVZ-eU-vGN" id="lYD-iB-EwZ"/>
-                        <segue destination="aBa-Zw-SwT" kind="show" identifier="Details" id="gHr-GW-DMu"/>
+                        <segue destination="aBa-Zw-SwT" kind="show" identifier="Edit" id="gHr-GW-DMu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bn4-Lt-wrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1202" y="125"/>
+            <point key="canvasLocation" x="145" y="887"/>
         </scene>
         <!--Start Screen-->
         <scene sceneID="tne-QT-ifu">
@@ -241,7 +241,7 @@
                                     <barButtonItem systemItem="add" id="J99-Zk-fqX"/>
                                 </items>
                             </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oUk-8W-W5K">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oUk-8W-W5K">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -250,7 +250,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1DZ-6J-I1N" id="qoz-2E-hyd">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eb-BO-dJk">
