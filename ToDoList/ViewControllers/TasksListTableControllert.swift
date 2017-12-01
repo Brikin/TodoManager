@@ -149,19 +149,20 @@ extension TasksListTableController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
+        let cellButton = tableView.dequeueReusableCell(withIdentifier: "ShowCompletedCell", for: indexPath) as! ShowCompletedCell
+
         
-//        if  section != self.sectionsTitle.count - 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
-            cell.nameTaskLabel.text = self.taskInSection[section][row].name
-            cell.dateTaskLabel.text = DateFormatter.localizedString(from: taskInSection[section][row].date,
-                                                                    dateStyle: DateFormatter.Style(rawValue: 2)!,
-                                                                    timeStyle: DateFormatter.Style(rawValue: 0)!)
-            return cell
-            
-//        }
+        if  section == self.sectionsTitle.count - 1 && row == self.taskInSection[section].count {
+            return cellButton
+        }
+        cell.nameTaskLabel.text = self.taskInSection[section][row].name
+        cell.dateTaskLabel.text = DateFormatter.localizedString(from: taskInSection[section][row].date,
+                                                                dateStyle: DateFormatter.Style(rawValue: 2)!,
+                                                                timeStyle: DateFormatter.Style(rawValue: 0)!)
+        return cell
         
-//        let cellButton = tableView.dequeueReusableCell(withIdentifier: "ShowCompletedCell", for: indexPath) as! ShowCompletedCell
-//        return cellButton
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -182,7 +183,9 @@ extension TasksListTableController: UITableViewDataSource {
 //        if sectionsTitle == [""] {
 //            return self.taskInSection[section].count + 1
 //        }
-        
+        if section == self.sectionsTitle.count - 1 {
+            return self.taskInSection[section].count + 1
+        }
         return self.taskInSection[section].count
     }
     
@@ -198,7 +201,7 @@ extension TasksListTableController: UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath) as! TaskCell
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(TasksListTableController.longTap))
          cell.addGestureRecognizer(longGesture)
-        let labelContent = cell.nameTaskLabel.text
+      //  let labelContent = cell.nameTaskLabel.text
         NSLog("You selected cell number: \(indexPath.row)!")
     }
     

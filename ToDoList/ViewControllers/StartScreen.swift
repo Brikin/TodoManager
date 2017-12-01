@@ -67,6 +67,18 @@ extension StartScreen: UITableViewDataSource {
         let section = indexPath.section
         let row = indexPath.row
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListCell
+        let ListButtonCell = tableView.dequeueReusableCell(withIdentifier: "ListButtonCell", for: indexPath) as! ListButtonCell
+        let SmartListButtonCell = tableView.dequeueReusableCell(withIdentifier: "SmartListButtonCell", for: indexPath) as! SmartListButtonCell
+
+        
+        if section == 2 && row == self.listsInSection[section].count {
+            return ListButtonCell
+        }
+        
+        if section == 1 && row == self.listsInSection[section].count {
+            return SmartListButtonCell
+        }
+        
         cell.nameCell.text = self.listsInSection[section][row]
         return cell
     }
@@ -113,6 +125,9 @@ extension StartScreen: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section != 0 {
+            return self.listsInSection[section].count + 1
+        }
         return self.listsInSection[section].count
     }
     
