@@ -9,7 +9,7 @@
 import UIKit
 
 
-class Task: NSObject {
+class Task: NSObject, NSCoding {
     var name: String
     var date: Date
     var complete: Bool
@@ -27,26 +27,28 @@ class Task: NSObject {
         
     }
     
-//    func encode decode
+   // func encode decode
     
-    //    func encode(with aCoder: NSCoder) {
-    //        aCoder.encode(name, forKey: "name")
-    //        aCoder.encode(date, forKey: "date")
-    //        aCoder.encode(finished, forKey: "finished")
-    //        aCoder.encode(finished, forKey: "category")
-    //        aCoder.encode(section, forKey: "section")
-    //
-    //
-    //    }
-    //
-    //    required init(coder aDecoder: NSCoder) {
-    //        name = aDecoder.decodeObject(forKey: "name") as! String
-    //        date = aDecoder.decodeObject(forKey: "date") as! String
-    //        finished = aDecoder.decodeBool(forKey: "finished")
-    //        category = aDecoder.decodeObject(forKey: "category") as? String ?? "inbox"
-    //        section = aDecoder.decodeObject(forKey: "section") as? String ?? "OVERDUE"
-    //        super.init()
-    //    }
+        func encode(with aCoder: NSCoder) {
+            aCoder.encode(name, forKey: "name")
+            aCoder.encode(date, forKey: "date")
+            aCoder.encode(complete, forKey: "complete")
+            aCoder.encode(list, forKey: "list")
+            aCoder.encode(smartList, forKey: "smartList")
+            aCoder.encode(section, forKey: "section")
+    
+    
+        }
+    
+        required init(coder aDecoder: NSCoder) {
+            name = aDecoder.decodeObject(forKey: "name") as! String
+            date = aDecoder.decodeObject(forKey: "date") as! Date
+            complete = aDecoder.decodeBool(forKey: "complete")
+            list = aDecoder.decodeObject(forKey: "list") as! String
+            smartList = aDecoder.decodeObject(forKey: "smartList") as! String
+            section = aDecoder.decodeObject(forKey: "section") as! String 
+            super.init()
+        }
     
 }
 
@@ -56,23 +58,23 @@ class TaskStore {
     
     // Save Load data
     
-    //    init() {
-    //        if let archivedItems = NSKeyedUnarchiver.unarchiveObject(withFile: itemArchiveURL.path) as? [Item] {
-    //            allItems = archivedItems
-    //
-    //        }
-    //    }
+        init() {
+            if let archivedItems = NSKeyedUnarchiver.unarchiveObject(withFile: itemArchiveURL.path) as? [Task] {
+                allTasks = archivedItems
     
-    //    let itemArchiveURL: URL = {
-    //        let documentsDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    //        let documentDerictory = documentsDirectories.first!
-    //        return documentDerictory.appendingPathComponent("items.archive")
-    //    }()
-    //
-    //    func saveChanges() -> Bool {
-    //        print("saving items to: \(itemArchiveURL.path)")
-    //        return NSKeyedArchiver.archiveRootObject(allItems, toFile: itemArchiveURL.path)
-    //    }
+            }
+        }
+    
+        let itemArchiveURL: URL = {
+            let documentsDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            let documentDerictory = documentsDirectories.first!
+            return documentDerictory.appendingPathComponent("todo.archive")
+        }()
+    
+        func saveChanges() -> Bool {
+            print("saving items to: \(itemArchiveURL.path)")
+            return NSKeyedArchiver.archiveRootObject(allTasks, toFile: itemArchiveURL.path)
+        }
     
     func createTask(name: String, list: String) -> Task {
         let newTask = Task(name: name,
@@ -103,7 +105,6 @@ class TaskStore {
     func taskForDate(list: [Task], dateDue: Date, range: String) -> [Task]  {
         var result: [Task]!
         
-        
         if range == "today" {
             result = list.filter({$0.date.roundedByDay == Date().roundedByDay })
         } else if range == "tomorrow" {
@@ -113,7 +114,6 @@ class TaskStore {
         } else if range == "overdue" {
             result = list.filter({$0.date.roundedByDay < Date().roundedByDay})
         }
-        
         return result
     }
     
@@ -129,7 +129,6 @@ class TaskStore {
         }
         return newDate
     }
-    
 }
 
 extension Date {
