@@ -88,7 +88,7 @@ class TaskStore {
                            list: list,
                            smartList: "",
                            section: "TODAY")
-        allTasks.append(newTask)
+        allTasks.insert(newTask, at: 0)
         return newTask
     }
     

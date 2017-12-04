@@ -70,6 +70,7 @@ class TasksListTableController: UIViewController {
     
     @IBAction func addTaskButtonTapped(_ sender: Any) {
         self.navigationController?.isNavigationBarHidden = true
+        textField.isEnabled = true
         textField.becomeFirstResponder()
     }
     
