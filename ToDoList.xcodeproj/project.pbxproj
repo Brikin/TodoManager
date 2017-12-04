@@ -14,7 +14,6 @@
 		444F540E1FCD4CF30057E6C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F540D1FCD4CF30057E6C7 /* AppDelegate.swift */; };
 		444F54131FCD4CF30057E6C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444F54111FCD4CF30057E6C7 /* Main.storyboard */; };
 		444F54151FCD4CF30057E6C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444F54141FCD4CF30057E6C7 /* Assets.xcassets */; };
-		444F54181FCD4CF30057E6C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444F54161FCD4CF30057E6C7 /* LaunchScreen.storyboard */; };
 		447B92751FCD5D5400CBB18F /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B92741FCD5D5400CBB18F /* StartScreen.swift */; };
 		447B92771FCD5E0E00CBB18F /* TasksListTableControllert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B92761FCD5E0E00CBB18F /* TasksListTableControllert.swift */; };
 		447B92791FCD5E6500CBB18F /* TasksDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B92781FCD5E6500CBB18F /* TasksDetailsController.swift */; };
@@ -33,7 +32,6 @@
 		444F540D1FCD4CF30057E6C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		444F54121FCD4CF30057E6C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		444F54141FCD4CF30057E6C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		444F54171FCD4CF30057E6C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		444F54191FCD4CF30057E6C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		447B92741FCD5D5400CBB18F /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 		447B92761FCD5E0E00CBB18F /* TasksListTableControllert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListTableControllert.swift; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 				441C21961FD161880011033F /* CCheckbox.swift */,
 				441C21981FD162650011033F /* Assets.xcassets */,
 				444F54141FCD4CF30057E6C7 /* Assets.xcassets */,
-				444F54161FCD4CF30057E6C7 /* LaunchScreen.storyboard */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -177,7 +174,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				444F54181FCD4CF30057E6C7 /* LaunchScreen.storyboard in Resources */,
 				444F54151FCD4CF30057E6C7 /* Assets.xcassets in Resources */,
 				441C21991FD162650011033F /* Assets.xcassets in Resources */,
 				444F54131FCD4CF30057E6C7 /* Main.storyboard in Resources */,
@@ -214,14 +210,6 @@
 				444F54121FCD4CF30057E6C7 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		444F54161FCD4CF30057E6C7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				444F54171FCD4CF30057E6C7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

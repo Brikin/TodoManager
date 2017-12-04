@@ -60,6 +60,7 @@ class TasksListTableController: UIViewController {
     @IBOutlet weak var tabBarTomorrow: UITabBarItem!
     @IBOutlet weak var tabBarWeek: UITabBarItem!
     @IBOutlet weak var doneButtonForTabBar: UIBarButtonItem!
+    @IBOutlet weak var pageControlTabBar: UIPageControl!
     
     
     @IBAction func doneTabBar(_ sender: Any) {
@@ -223,17 +224,29 @@ extension TasksListTableController: UITableViewDataSource {
         let locationInView = longPress.location(in: tableTask)
       //  let indexPath = tableTask.indexPathForRow(at: locationInView)
         tabBarView.isHidden = false
+       // pageControlTabBar.isHidden = false
     }
     
      func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let section = indexPath.section
         let row = indexPath.row
-        
         selectedTask = taskInSection[section][row]
+        
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") {
             (action: UITableViewRowAction, indexPath: IndexPath) in
-            self.taskStore.deleteTask(self.selectedTask)
-            self.refresh()
+            let title = "Delete '\(self.selectedTask.name)'?"
+            let message = "A you sure?"
+            let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {(action) -> Void in self.taskStore.deleteTask(self.selectedTask)
+              //  self.tableTask.deleteRows(at: row, with: <#T##UITableViewRowAnimation#>)
+                self.refresh()
+            })
+            ac.addAction(cancelAction)
+            ac.addAction(deleteAction)
+            self.present(ac, animated: true, completion: nil)
+            
+            
         }
 
         let share = UITableViewRowAction(style: .normal, title: "Details") {
@@ -242,5 +255,19 @@ extension TasksListTableController: UITableViewDataSource {
 
         share.backgroundColor = UIColor.lightGray
         return [delete, share]
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, indexPath: IndexPath) {
+        let section = indexPath.section
+        let row = indexPath.row
+        selectedTask = taskInSection[section][row]
+        if editingStyle == .delete {
+            let title = "Delete \(selectedTask.name)?"
+            let message = "A you sure?"
+            let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            ac.addAction(cancelAction)
+            present(ac, animated: true, completion: nil)
+        }
     }
 }

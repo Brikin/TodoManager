@@ -5,6 +5,20 @@
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 13,
+          "top" : 14,
+          "right" : 7,
+          "left" : 12
+        }
+      },
       "idiom" : "universal",
       "filename" : "icons8-No Credit Cards-50.png",
       "scale" : "2x"
