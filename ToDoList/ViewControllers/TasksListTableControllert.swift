@@ -23,23 +23,26 @@ class TasksListTableController: UIViewController {
     var taskInSection: [[Task]] = []
     var selectedTask: Task!
     
-    var overdue: [Task] = []
-    var today: [Task] = []
-    var tomorrow: [Task] = []
-    var nextWeek: [Task] = []
-    var completed: [Task] = []
-    
+//    var overdue: [Task] = []
+//    var today: [Task] = []
+//    var tomorrow: [Task] = []
+//    var nextWeek: [Task] = []
+//    var completed: [Task] = []
+//
     
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
         self.navigationItem.title = listIdentifier
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.rightBarButtonItem?.title = ""
+      
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        refresh()
+        
+      refresh()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -58,6 +61,7 @@ class TasksListTableController: UIViewController {
     @IBOutlet weak var tabBarWeek: UITabBarItem!
     @IBOutlet weak var doneButtonForTabBar: UIBarButtonItem!
     
+    
     @IBAction func doneTabBar(_ sender: Any) {
         tabBarView.isHidden = true
         navigationItem.rightBarButtonItem?.isEnabled = false
@@ -74,52 +78,61 @@ class TasksListTableController: UIViewController {
         textField.text = nil
         textField.isEnabled = false
         self.navigationController?.isNavigationBarHidden = false
-        self.tableTask.reloadData()
-        
-        
+        self.refresh()
     }
 
     func sortBySections(list: [Task])  {
-        overdue = taskStore.taskForDate(list: list, dateDue: Date(), range: "overdue")
+        let overdue = taskStore.taskForDate(list: list, dateDue: Date(), range: "overdue")
         if !overdue.isEmpty  {
             sectionsTitle.append("OVERDUE")
             taskInSection.append(overdue)
         }
         
-        today = taskStore.taskForDate(list: list, dateDue: Date(), range: "today")
+        let today = taskStore.taskForDate(list: list, dateDue: Date(), range: "today")
         if !today.isEmpty  {
             sectionsTitle.append("TODAY")
             taskInSection.append(today)
         }
         
-        tomorrow = taskStore.taskForDate(list: list, dateDue: Date(), range: "tomorrow")
+        let tomorrow = taskStore.taskForDate(list: list, dateDue: Date(), range: "tomorrow")
         if !tomorrow.isEmpty  {
             sectionsTitle.append("TOMORROW")
             taskInSection.append(tomorrow)
         }
         
-        nextWeek = taskStore.taskForDate(list: list, dateDue: Date(), range: "week")
+        let nextWeek = taskStore.taskForDate(list: list, dateDue: Date(), range: "week")
         if !nextWeek.isEmpty  {
             sectionsTitle.append("Next seven days")
             taskInSection.append(nextWeek)
         }
         
-        completed = taskStore.taskForComplete(status: true)
+        let completed = taskStore.taskForComplete(status: true)
         if !completed.isEmpty  {
             sectionsTitle.append("Completed")
             taskInSection.append(completed)
         }
-//        sectionsTitle.append("")
-//        taskInSection.append([Task]())
-       // tableTask.reloadData()
     }
     
     func refresh() {
+      sectionsTitle = []
+      taskInSection = []
         let sortByList = taskStore.taskForList(listName: "\(listIdentifier)")
         sortBySections(list: sortByList)
         self.tableTask.reloadData()
+        
+        
+    }
+    
+    func complete(task: Task) {
+//        let index = sender.tag
+//        let item = unfinished[index]
+//        task.finished = true
+        
+        
+        self.refresh()
     }
 }
+
 
 extension TasksListTableController: UITabBarDelegate {
     
@@ -134,7 +147,6 @@ extension TasksListTableController: UITabBarDelegate {
         } else if item == tabBarWeek {
             guard let selectedTask = self.selectedTask else { return }
             self.selectedTask.date = taskStore.changeDate(date: selectedTask.date, value: "week")
-            
         }
         refresh()
     }
@@ -151,17 +163,18 @@ extension TasksListTableController: UITableViewDataSource {
         let row = indexPath.row
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
         let cellButton = tableView.dequeueReusableCell(withIdentifier: "ShowCompletedCell", for: indexPath) as! ShowCompletedCell
-
-        
         if  section == self.sectionsTitle.count - 1 && row == self.taskInSection[section].count {
             return cellButton
         }
+        
+        cell.checkBox.animation = .transitionCrossDissolve
+        cell.checkBox.delegate = cell
+        cell.task = taskInSection[section][row]
         cell.nameTaskLabel.text = self.taskInSection[section][row].name
         cell.dateTaskLabel.text = DateFormatter.localizedString(from: taskInSection[section][row].date,
                                                                 dateStyle: DateFormatter.Style(rawValue: 2)!,
                                                                 timeStyle: DateFormatter.Style(rawValue: 0)!)
         return cell
-        
         
     }
     
@@ -179,10 +192,7 @@ extension TasksListTableController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-//        if sectionsTitle == [""] {
-//            return self.taskInSection[section].count + 1
-//        }
+
         if section == self.sectionsTitle.count - 1 {
             return self.taskInSection[section].count + 1
         }

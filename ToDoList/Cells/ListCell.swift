@@ -12,3 +12,4 @@ class ListCell: UITableViewCell {
     
     @IBOutlet weak var nameCell: UILabel!
 }
+

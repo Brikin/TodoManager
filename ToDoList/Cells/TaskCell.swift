@@ -9,10 +9,42 @@
 import UIKit
 
 class TaskCell: UITableViewCell {
+    weak var parentTableController: TasksListTableController?
+    var task: Task?
     
     @IBOutlet weak var nameTaskLabel: UILabel!
     
     @IBOutlet weak var dateTaskLabel: UILabel!
+    @IBOutlet weak var checkBox: CCheckbox!
+ 
     
-    
+    @IBAction func checkBoxOneButton(_ sender: UIButton) {
+        guard let task = self.task else { return }
+        parentTableController?.complete(task: task)
+    }
 }
+
+extension TaskCell: CheckboxDelegate {
+    
+    func didSelect(_ checkbox: CCheckbox) {
+        switch checkbox {
+        case checkBox:
+            checkBox.animation = .showHideTransitionViews
+            print("checkbox one selected")
+            break
+        default:
+            break
+        }
+    }
+    
+    func didDeselect(_ checkbox: CCheckbox) {
+        switch checkbox {
+        case checkBox:
+            print("checkbox one deselected")
+            break
+        default:
+            break
+        }
+    }
+}
+

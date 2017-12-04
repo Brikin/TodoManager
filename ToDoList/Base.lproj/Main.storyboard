@@ -41,7 +41,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zMl-DU-V62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1121" y="887"/>
+            <point key="canvasLocation" x="1460" y="1020"/>
         </scene>
         <!--Tasks List Table Controller-->
         <scene sceneID="WUd-yB-u4B">
@@ -91,14 +91,23 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZT-Zg-8Jj">
-                                                    <rect key="frame" x="7" y="6" width="46" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZT-Zg-8Jj" customClass="CCheckbox" customModule="ToDoList" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="8" width="79" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <state key="selected" image="ic_ok_selected"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="normalImage" value="ic_ok"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="ic_ok_selected"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCheckboxSelected" value="NO"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="checkBoxOneButton:" destination="NKE-JQ-a3W" eventType="touchUpInside" id="wbW-Ju-u5e"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="checkBox" destination="bZT-Zg-8Jj" id="kPb-RF-ch0"/>
                                             <outlet property="dateTaskLabel" destination="wpr-rw-fD7" id="yY8-Nl-HIN"/>
                                             <outlet property="nameTaskLabel" destination="ODd-HL-z4a" id="62c-GI-DKf"/>
                                         </connections>
@@ -190,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bn4-Lt-wrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="145" y="887"/>
+            <point key="canvasLocation" x="145" y="1020"/>
         </scene>
         <!--Start Screen-->
         <scene sceneID="tne-QT-ifu">
@@ -337,4 +346,8 @@
             <point key="canvasLocation" x="-953" y="125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_ok" width="25" height="25"/>
+        <image name="ic_ok_selected" width="25" height="25"/>
+    </resources>
 </document>

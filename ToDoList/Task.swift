@@ -61,7 +61,6 @@ class TaskStore {
         init() {
             if let archivedItems = NSKeyedUnarchiver.unarchiveObject(withFile: itemArchiveURL.path) as? [Task] {
                 allTasks = archivedItems
-    
             }
         }
     
