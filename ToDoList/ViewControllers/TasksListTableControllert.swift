@@ -160,10 +160,23 @@ extension TasksListTableController: UITableViewDataSource {
         let row = indexPath.row
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
         let cellButton = tableView.dequeueReusableCell(withIdentifier: "ShowCompletedCell", for: indexPath) as! ShowCompletedCell
+        let completedCell = tableView.dequeueReusableCell(withIdentifier: "CompletedCell", for: indexPath) as! CompletedCell
+
         if  section == self.sectionsTitle.count - 1 && row == self.taskInSection[section].count {
             return cellButton
         }
         
+        if sectionsTitle[section] == "Completed" {
+            completedCell.nameTaskLabel.text = self.taskInSection[section][row].name
+            completedCell.dateTaskLabel.text = DateFormatter.localizedString(from: taskInSection[section][row].date,
+                                                                             dateStyle: DateFormatter.Style(rawValue: 2)!,
+                                                                             timeStyle: DateFormatter.Style(rawValue: 0)!)
+            return completedCell
+        }
+        
+        completedCell.parentTableController = self
+        completedCell.checkBox.animation = .transitionCrossDissolve
+        // completedCell.checkBox.delegate = completedCell
         cell.parentTableController = self
         cell.checkBox.animation = .transitionCrossDissolve
         cell.checkBox.delegate = cell
@@ -225,6 +238,9 @@ extension TasksListTableController: UITableViewDataSource {
       //  let indexPath = tableTask.indexPathForRow(at: locationInView)
         tabBarView.isHidden = false
        // pageControlTabBar.isHidden = false
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
     }
     
      func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
