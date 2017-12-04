@@ -52,6 +52,12 @@ class Task: NSObject, NSCoding {
     
 }
 
+enum TaskRange {
+    case today
+    case tomorrow
+    case week
+    case overdue
+}
 class TaskStore {
     
     var allTasks = [Task]()
@@ -93,25 +99,25 @@ class TaskStore {
     }
     
     func taskForList(listName: String) -> [Task] {
-        
         return allTasks.filter({$0.list == listName})
     }
     
-    func taskForComplete(status: Bool) -> [Task] {
-        return allTasks.filter({ $0.complete == status })
+    func taskForComplete(list: [Task], status: Bool) -> [Task] {
+        return list.filter({ $0.complete == status })
     }
     
-    func taskForDate(list: [Task], dateDue: Date, range: String) -> [Task]  {
+    func taskForDate(list: [Task], dateDue: Date, range: TaskRange) -> [Task]  {
         var result: [Task]!
         
-        if range == "today" {
-            result = list.filter({$0.date.roundedByDay == Date().roundedByDay })
-        } else if range == "tomorrow" {
-            result = list.filter({$0.date.roundedByDay == changeDate(date: dateDue, value: "tomorrow").roundedByDay})
-        } else if range == "week" {
-            result = list.filter({$0.date.roundedByDay > Date().roundedByDay && $0.date.roundedByDay != changeDate(date: dateDue, value: "tomorrow").roundedByDay})
-        } else if range == "overdue" {
-            result = list.filter({$0.date.roundedByDay < Date().roundedByDay})
+        
+        if range == .today {
+            result = list.filter({$0.date.roundedByDay == Date().roundedByDay && !$0.complete })
+        } else if range == .tomorrow {
+            result = list.filter({$0.date.roundedByDay == changeDate(date: dateDue, value: "tomorrow").roundedByDay && !$0.complete})
+        } else if range == .week{
+            result = list.filter({$0.date.roundedByDay > Date().roundedByDay && $0.date.roundedByDay != changeDate(date: dateDue, value: "tomorrow").roundedByDay && !$0.complete})
+        } else if range == .overdue {
+            result = list.filter({$0.date.roundedByDay < Date().roundedByDay && !$0.complete})
         }
         return result
     }

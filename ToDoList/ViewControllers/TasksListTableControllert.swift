@@ -82,31 +82,32 @@ class TasksListTableController: UIViewController {
     }
 
     func sortBySections(list: [Task])  {
-        let overdue = taskStore.taskForDate(list: list, dateDue: Date(), range: "overdue")
+        
+        let overdue = taskStore.taskForDate(list: list, dateDue: Date(), range: .overdue)
         if !overdue.isEmpty  {
             sectionsTitle.append("OVERDUE")
             taskInSection.append(overdue)
         }
         
-        let today = taskStore.taskForDate(list: list, dateDue: Date(), range: "today")
+        let today = taskStore.taskForDate(list: list, dateDue: Date(), range: .today)
         if !today.isEmpty  {
             sectionsTitle.append("TODAY")
             taskInSection.append(today)
         }
         
-        let tomorrow = taskStore.taskForDate(list: list, dateDue: Date(), range: "tomorrow")
+        let tomorrow = taskStore.taskForDate(list: list, dateDue: Date(), range: .tomorrow)
         if !tomorrow.isEmpty  {
             sectionsTitle.append("TOMORROW")
             taskInSection.append(tomorrow)
         }
         
-        let nextWeek = taskStore.taskForDate(list: list, dateDue: Date(), range: "week")
+        let nextWeek = taskStore.taskForDate(list: list, dateDue: Date(), range: .week)
         if !nextWeek.isEmpty  {
             sectionsTitle.append("Next seven days")
             taskInSection.append(nextWeek)
         }
         
-        let completed = taskStore.taskForComplete(status: true)
+        let completed = taskStore.taskForComplete(list: list, status: true)
         if !completed.isEmpty  {
             sectionsTitle.append("Completed")
             taskInSection.append(completed)
@@ -118,17 +119,11 @@ class TasksListTableController: UIViewController {
       taskInSection = []
         let sortByList = taskStore.taskForList(listName: "\(listIdentifier)")
         sortBySections(list: sortByList)
-        self.tableTask.reloadData()
-        
-        
+        self.tableTask.reloadData()    
     }
     
     func complete(task: Task) {
-//        let index = sender.tag
-//        let item = unfinished[index]
-//        task.finished = true
-        
-        
+        task.complete = true
         self.refresh()
     }
 }
@@ -167,6 +162,7 @@ extension TasksListTableController: UITableViewDataSource {
             return cellButton
         }
         
+        cell.parentTableController = self
         cell.checkBox.animation = .transitionCrossDissolve
         cell.checkBox.delegate = cell
         cell.task = taskInSection[section][row]
@@ -224,10 +220,8 @@ extension TasksListTableController: UITableViewDataSource {
         let longPress = gestureReconizer as UILongPressGestureRecognizer
         _ = longPress.state
         let locationInView = longPress.location(in: tableTask)
-        let indexPath = tableTask.indexPathForRow(at: locationInView)
+      //  let indexPath = tableTask.indexPathForRow(at: locationInView)
         tabBarView.isHidden = false
-        // whatever you want with indexPath use it //
-        
     }
     
      func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
