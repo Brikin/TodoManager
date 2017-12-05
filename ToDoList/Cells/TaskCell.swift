@@ -20,7 +20,11 @@ class TaskCell: UITableViewCell {
     
     @IBAction func checkBoxOneButton(_ sender: UIButton) {
         guard let task = self.task else { return }
-        parentTableController?.complete(task: task)
+        
+        let when = DispatchTime.now() + 1
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.parentTableController?.complete(task: task)
+        }
     }
 }
 

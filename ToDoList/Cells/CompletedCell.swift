@@ -21,6 +21,7 @@ class CompletedCell: UITableViewCell {
     @IBAction func checkBoxOneButton(_ sender: UIButton) {
         guard let task = self.task else { return }
      //   parentTableController?.complete(task: task)
+        
     }
     
     

@@ -120,12 +120,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0H-sx-JAC">
-                                                    <rect key="frame" x="164" y="6" width="46" height="30"/>
+                                                    <rect key="frame" x="113" y="6" width="149" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <state key="normal" title="Show completed"/>
+                                                    <connections>
+                                                        <action selector="buttonShowTap:" destination="TNq-k5-aG9" eventType="touchUpInside" id="0KE-4S-KMC"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="buttonShow" destination="D0H-sx-JAC" id="a1P-qs-dcA"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CompletedCell" id="YpQ-d9-10T" customClass="CompletedCell" customModule="ToDoList" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="116" width="375" height="44"/>

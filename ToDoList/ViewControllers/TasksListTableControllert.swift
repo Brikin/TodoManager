@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class TasksListTableController: UIViewController {
     
@@ -15,6 +16,7 @@ class TasksListTableController: UIViewController {
     }
     
     var tasksDetailsController: TasksDetailsController!
+    var showComplete: ShowCompletedCell!
     
     
     var listIdentifier = ""
@@ -23,26 +25,27 @@ class TasksListTableController: UIViewController {
     var taskInSection: [[Task]] = []
     var selectedTask: Task!
     
-//    var overdue: [Task] = []
-//    var today: [Task] = []
-//    var tomorrow: [Task] = []
-//    var nextWeek: [Task] = []
-//    var completed: [Task] = []
-//
+    var showSectionIndicator = 0
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        if showSectionIndicator == 1 {
+            showComplete.buttonShow.isEnabled = false
+        }
+      
+        
         self.navigationItem.title = listIdentifier
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.rightBarButtonItem?.title = ""
-      
-
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-      refresh()
+        refresh()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -60,8 +63,6 @@ class TasksListTableController: UIViewController {
     @IBOutlet weak var tabBarTomorrow: UITabBarItem!
     @IBOutlet weak var tabBarWeek: UITabBarItem!
     @IBOutlet weak var doneButtonForTabBar: UIBarButtonItem!
-    @IBOutlet weak var pageControlTabBar: UIPageControl!
-    
     
     @IBAction func doneTabBar(_ sender: Any) {
         tabBarView.isHidden = true
@@ -82,7 +83,7 @@ class TasksListTableController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         self.refresh()
     }
-
+    
     func sortBySections(list: [Task])  {
         
         let overdue = taskStore.taskForDate(list: list, dateDue: Date(), range: .overdue)
@@ -110,18 +111,18 @@ class TasksListTableController: UIViewController {
         }
         
         let completed = taskStore.taskForComplete(list: list, status: true)
-        if !completed.isEmpty  {
+        if !completed.isEmpty && showSectionIndicator != 0  {
             sectionsTitle.append("Completed")
             taskInSection.append(completed)
         }
     }
     
     func refresh() {
-      sectionsTitle = []
-      taskInSection = []
+        sectionsTitle = []
+        taskInSection = []
         let sortByList = taskStore.taskForList(listName: "\(listIdentifier)")
         sortBySections(list: sortByList)
-        self.tableTask.reloadData()    
+        self.tableTask.reloadData()
     }
     
     func complete(task: Task) {
@@ -129,7 +130,6 @@ class TasksListTableController: UIViewController {
         self.refresh()
     }
 }
-
 
 extension TasksListTableController: UITabBarDelegate {
     
@@ -154,19 +154,30 @@ extension TasksListTableController: UITableViewDelegate {
 }
 
 extension TasksListTableController: UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
         let cellButton = tableView.dequeueReusableCell(withIdentifier: "ShowCompletedCell", for: indexPath) as! ShowCompletedCell
         let completedCell = tableView.dequeueReusableCell(withIdentifier: "CompletedCell", for: indexPath) as! CompletedCell
+        cellButton.parentTableController = self
+        completedCell.parentTableController = self
+        cell.parentTableController = self
+        completedCell.checkBox.animation = .transitionCrossDissolve
 
-        if  section == self.sectionsTitle.count - 1 && row == self.taskInSection[section].count {
+        if  (section == self.sectionsTitle.count - 1 && row == self.taskInSection[section].count) || self.sectionsTitle.count == 0 {
+            
+            if showSectionIndicator == 1 {
+                cellButton.buttonShow.isEnabled = false
+                cellButton.buttonShow.setTitle("No more completed", for: .disabled)
+            }
+            
             return cellButton
         }
         
-        if sectionsTitle[section] == "Completed" {
+        if sectionsTitle[section] == "Completed"  {
             completedCell.nameTaskLabel.text = self.taskInSection[section][row].name
             completedCell.dateTaskLabel.text = DateFormatter.localizedString(from: taskInSection[section][row].date,
                                                                              dateStyle: DateFormatter.Style(rawValue: 2)!,
@@ -174,10 +185,10 @@ extension TasksListTableController: UITableViewDataSource {
             return completedCell
         }
         
-        completedCell.parentTableController = self
-        completedCell.checkBox.animation = .transitionCrossDissolve
-        // completedCell.checkBox.delegate = completedCell
-        cell.parentTableController = self
+        
+        
+      //  cellButton.buttonShow
+        //completedCell.checkBox.delegate = completedCell
         cell.checkBox.animation = .transitionCrossDissolve
         cell.checkBox.delegate = cell
         cell.task = taskInSection[section][row]
@@ -191,19 +202,27 @@ extension TasksListTableController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20
-    
+        
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if self.sectionsTitle.count == 0 {
+            return ""
+        }
         return self.sectionsTitle[section]
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if self.sectionsTitle.count == 0 {
+            return 1
+        }
         return self.sectionsTitle.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        if self.sectionsTitle.count == 0 {
+            return 1
+        }
         if section == self.sectionsTitle.count - 1 {
             return self.taskInSection[section].count + 1
         }
@@ -221,8 +240,8 @@ extension TasksListTableController: UITableViewDataSource {
         
         let cell = tableView.cellForRow(at: indexPath) as! TaskCell
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(TasksListTableController.longTap))
-         cell.addGestureRecognizer(longGesture)
-      //  let labelContent = cell.nameTaskLabel.text
+        cell.addGestureRecognizer(longGesture)
+        //  let labelContent = cell.nameTaskLabel.text
         NSLog("You selected cell number: \(indexPath.row)!")
     }
     
@@ -234,16 +253,15 @@ extension TasksListTableController: UITableViewDataSource {
         
         let longPress = gestureReconizer as UILongPressGestureRecognizer
         _ = longPress.state
-        let locationInView = longPress.location(in: tableTask)
-      //  let indexPath = tableTask.indexPathForRow(at: locationInView)
+        //let locationInView = longPress.location(in: tableTask)
+        //  let indexPath = tableTask.indexPathForRow(at: locationInView)
         tabBarView.isHidden = false
-       // pageControlTabBar.isHidden = false
-    }
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
+        // pageControlTabBar.isHidden = false
     }
     
-     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+ 
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let section = indexPath.section
         let row = indexPath.row
         selectedTask = taskInSection[section][row]
@@ -255,20 +273,18 @@ extension TasksListTableController: UITableViewDataSource {
             let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {(action) -> Void in self.taskStore.deleteTask(self.selectedTask)
-              //  self.tableTask.deleteRows(at: row, with: <#T##UITableViewRowAnimation#>)
+                //  self.tableTask.deleteRows(at: row, with: <#T##UITableViewRowAnimation#>)
                 self.refresh()
             })
             ac.addAction(cancelAction)
             ac.addAction(deleteAction)
             self.present(ac, animated: true, completion: nil)
-            
-            
         }
-
+        
         let share = UITableViewRowAction(style: .normal, title: "Details") {
             (action, indexPath) in
         }
-
+        
         share.backgroundColor = UIColor.lightGray
         return [delete, share]
     }
