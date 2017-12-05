@@ -18,6 +18,7 @@ class TasksListTableController: UIViewController {
     var tasksDetailsController: TasksDetailsController!
     var showComplete: ShowCompletedCell!
     
+    var shownIndexes : [IndexPath] = []
     
     var listIdentifier = ""
     
@@ -198,6 +199,41 @@ extension TasksListTableController: UITableViewDataSource {
                                                                 timeStyle: DateFormatter.Style(rawValue: 0)!)
         return cell
         
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if (shownIndexes.contains(indexPath) == false) {
+            shownIndexes.append(indexPath)
+            
+            cell.transform = CGAffineTransform(translationX: 0, y: 3)
+            cell.layer.shadowColor = UIColor.black.cgColor
+            cell.layer.shadowOffset = CGSize(width: 10, height: 10)
+            cell.alpha = 0
+            
+            UIView.beginAnimations("rotation", context: nil)
+            UIView.setAnimationDuration(0.5)
+            cell.transform = CGAffineTransform(translationX: 0, y: 0)
+            cell.alpha = 1
+            cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+            UIView.commitAnimations()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let aHeader = UITableViewHeaderFooterView()
+        let header = aHeader as UIView
+        var headerFrame = tableView.frame
+        headerFrame.size.height = 100
+        header.frame = headerFrame
+        
+        let transition = CATransition()
+        transition.duration = 1.0;
+        transition.type = kCATransitionReveal; //choose your animation
+        header.layer.add(transition, forKey: nil)
+        return header
+
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
