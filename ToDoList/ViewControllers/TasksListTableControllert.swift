@@ -40,8 +40,6 @@ class TasksListTableController: UIViewController {
         self.navigationItem.title = listIdentifier
         navigationItem.rightBarButtonItem?.isEnabled = false
         navigationItem.rightBarButtonItem?.title = ""
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -186,8 +184,6 @@ extension TasksListTableController: UITableViewDataSource {
             return completedCell
         }
         
-        
-        
       //  cellButton.buttonShow
         //completedCell.checkBox.delegate = completedCell
         cell.checkBox.animation = .transitionCrossDissolve
@@ -198,12 +194,14 @@ extension TasksListTableController: UITableViewDataSource {
                                                                 dateStyle: DateFormatter.Style(rawValue: 2)!,
                                                                 timeStyle: DateFormatter.Style(rawValue: 0)!)
         return cell
-        
     }
     
-    
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if self.sectionsTitle.count == 0 {
+            ///header color
+        }
+        
         if (shownIndexes.contains(indexPath) == false) {
             shownIndexes.append(indexPath)
             

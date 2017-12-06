@@ -24,9 +24,7 @@ class StartScreen: UIViewController {
     @IBOutlet weak var tableLists: UITableView!
     @IBOutlet weak var textField: UITextField!
     
-    
-    
-    
+
     @IBAction func addTaskButtonTapped(_ sender: Any) {
         textField.isEnabled = true
         self.navigationController?.isNavigationBarHidden = true
@@ -44,6 +42,10 @@ class StartScreen: UIViewController {
     override func viewDidLoad() {
      super.viewDidLoad()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tableLists.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -66,11 +68,18 @@ extension StartScreen: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListCell
         let ListButtonCell = tableView.dequeueReusableCell(withIdentifier: "ListButtonCell", for: indexPath) as! ListButtonCell
         let SmartListButtonCell = tableView.dequeueReusableCell(withIdentifier: "SmartListButtonCell", for: indexPath) as! SmartListButtonCell
+    
 
         
+        cell.countOverdue.isHidden = true
+        cell.currentCount.isHidden = true
+        cell.imageOverdue.isHidden = true
+
         if section == 2 && row == self.listsInSection[section].count {
             return ListButtonCell
         }
@@ -80,6 +89,21 @@ extension StartScreen: UITableViewDataSource {
         }
         
         cell.nameCell.text = self.listsInSection[section][row]
+        let currentTasks = taskStore.taskForList(listName: cell.nameCell.text!)
+        let currentCount = taskStore.taskForComplete(list: currentTasks, status: false)
+        let countOverdue = taskStore.taskForDate(list: currentCount, dateDue: Date(), range: .overdue)
+        
+        if currentCount.count != 0 {
+            cell.currentCount.isHidden = false
+        }
+        if countOverdue.count != 0 {
+            cell.imageOverdue.isHidden = false
+            cell.countOverdue.isHidden = false
+        }
+        
+        cell.currentCount.text = "\(currentCount.count)"
+        cell.countOverdue.text = "\(countOverdue.count)"
+        
         return cell
     }
     

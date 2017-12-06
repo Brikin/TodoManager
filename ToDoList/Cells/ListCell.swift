@@ -11,5 +11,9 @@ import UIKit
 class ListCell: UITableViewCell {
     
     @IBOutlet weak var nameCell: UILabel!
+    @IBOutlet weak var countOverdue: UILabel!
+    @IBOutlet weak var currentCount: UILabel!
+    @IBOutlet weak var imageOverdue: UIImageView!
 }
+
 

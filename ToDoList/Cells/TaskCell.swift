@@ -14,6 +14,7 @@ class TaskCell: UITableViewCell {
     
     @IBOutlet weak var nameTaskLabel: UILabel!
     
+    
     @IBOutlet weak var dateTaskLabel: UILabel!
     @IBOutlet weak var checkBox: CCheckbox!
  
