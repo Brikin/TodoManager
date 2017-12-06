@@ -13,7 +13,6 @@
 		441C21991FD162650011033F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 441C21981FD162650011033F /* Assets.xcassets */; };
 		444F540E1FCD4CF30057E6C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F540D1FCD4CF30057E6C7 /* AppDelegate.swift */; };
 		444F54131FCD4CF30057E6C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444F54111FCD4CF30057E6C7 /* Main.storyboard */; };
-		444F54151FCD4CF30057E6C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444F54141FCD4CF30057E6C7 /* Assets.xcassets */; };
 		447B92751FCD5D5400CBB18F /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B92741FCD5D5400CBB18F /* StartScreen.swift */; };
 		447B92771FCD5E0E00CBB18F /* TasksListTableControllert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B92761FCD5E0E00CBB18F /* TasksListTableControllert.swift */; };
 		447B92791FCD5E6500CBB18F /* TasksDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447B92781FCD5E6500CBB18F /* TasksDetailsController.swift */; };
@@ -28,11 +27,10 @@
 		441C218F1FD140B30011033F /* ListButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButtonCell.swift; sourceTree = "<group>"; };
 		441C21941FD14ADD0011033F /* SmartListButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartListButtonCell.swift; sourceTree = "<group>"; };
 		441C21961FD161880011033F /* CCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCheckbox.swift; sourceTree = "<group>"; };
-		441C21981FD162650011033F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../Assets.xcassets; sourceTree = "<group>"; };
+		441C21981FD162650011033F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		444F540A1FCD4CF30057E6C7 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		444F540D1FCD4CF30057E6C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		444F54121FCD4CF30057E6C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		444F54141FCD4CF30057E6C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		444F54191FCD4CF30057E6C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		447B92741FCD5D5400CBB18F /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 		447B92761FCD5E0E00CBB18F /* TasksListTableControllert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListTableControllert.swift; sourceTree = "<group>"; };
@@ -87,8 +85,9 @@
 		444F540C1FCD4CF30057E6C7 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
-				447B927B1FCD5FAA00CBB18F /* Other */,
+				441C21981FD162650011033F /* Assets.xcassets */,
 				444F54111FCD4CF30057E6C7 /* Main.storyboard */,
+				441C21961FD161880011033F /* CCheckbox.swift */,
 				444F540D1FCD4CF30057E6C7 /* AppDelegate.swift */,
 				444F54191FCD4CF30057E6C7 /* Info.plist */,
 				447B927C1FCD600600CBB18F /* Task.swift */,
@@ -106,16 +105,6 @@
 				447B92781FCD5E6500CBB18F /* TasksDetailsController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		447B927B1FCD5FAA00CBB18F /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				441C21961FD161880011033F /* CCheckbox.swift */,
-				441C21981FD162650011033F /* Assets.xcassets */,
-				444F54141FCD4CF30057E6C7 /* Assets.xcassets */,
-			);
-			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,7 +166,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				444F54151FCD4CF30057E6C7 /* Assets.xcassets in Resources */,
 				441C21991FD162650011033F /* Assets.xcassets in Resources */,
 				444F54131FCD4CF30057E6C7 /* Main.storyboard in Resources */,
 			);

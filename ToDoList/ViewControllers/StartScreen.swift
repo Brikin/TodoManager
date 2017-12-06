@@ -13,7 +13,7 @@ class StartScreen: UIViewController {
     var taskStore: TaskStore! {
         get { return (UIApplication.shared.delegate as? AppDelegate)?.taskStore }
     }
-    
+    var navigationBarController: UINavigationController!
     var tasksListTableController: TasksListTableController!
     let sectionsTitle = ["", "Smart lists", "Lists"]
     var listsInSection = [["Inbox"], ["Important", "Focused"], ["New List"] ]
@@ -23,9 +23,11 @@ class StartScreen: UIViewController {
     
     @IBOutlet weak var tableLists: UITableView!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var topBar: UIToolbar!
     
 
     @IBAction func addTaskButtonTapped(_ sender: Any) {
+        UIApplication.shared.statusBarView?.backgroundColor = topBar.barTintColor
         textField.isEnabled = true
         self.navigationController?.isNavigationBarHidden = true
         textField.becomeFirstResponder()
@@ -45,6 +47,10 @@ class StartScreen: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+      //  tableLists.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         tableLists.reloadData()
     }
     
@@ -55,6 +61,12 @@ class StartScreen: UIViewController {
         
     }
     
+}
+
+extension UIApplication {
+    var statusBarView: UIView? {
+        return value(forKey: "statusBar") as? UIView
+    }
 }
 
 extension StartScreen: UITableViewDelegate {
@@ -73,12 +85,10 @@ extension StartScreen: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListCell
         let ListButtonCell = tableView.dequeueReusableCell(withIdentifier: "ListButtonCell", for: indexPath) as! ListButtonCell
         let SmartListButtonCell = tableView.dequeueReusableCell(withIdentifier: "SmartListButtonCell", for: indexPath) as! SmartListButtonCell
-    
 
-        
-        cell.countOverdue.isHidden = true
-        cell.currentCount.isHidden = true
-        cell.imageOverdue.isHidden = true
+//        cell.countOverdue.isHidden = true
+//        cell.currentCount.isHidden = true
+//        cell.imageOverdue.isHidden = true
 
         if section == 2 && row == self.listsInSection[section].count {
             return ListButtonCell
@@ -107,14 +117,24 @@ extension StartScreen: UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as! TableViewHeaderView
+
+        cell.textLabel?.backgroundColor = UIColor.white
+       cell.backgroundColor = UIColor.clear
+        cell.labelText.text = "\(sectionsTitle[section]) "
+
+        return cell
+    }
+    /*
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.sectionsTitle[section]
-    }
-    
+    }*/
+    /*
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if section == 0 {
-            
+            (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.white
+            return
         } else {
             
             let path = UIBezierPath()
@@ -123,24 +143,26 @@ extension StartScreen: UITableViewDataSource {
             
             // Create a `CAShapeLayer` that uses that `UIBezierPath`:
             
+            let sublayersCount = (view as! UITableViewHeaderFooterView).layer.sublayers?.count ?? 0
+            guard sublayersCount <= 2 else { return }
             let shapeLayer = CAShapeLayer()
             shapeLayer.path = path.cgPath
             shapeLayer.strokeColor = UIColor.black.cgColor
             shapeLayer.lineWidth = 0.2
 
-            (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.white
+            (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.lightGray
             (view as! UITableViewHeaderFooterView).textLabel?.textAlignment = NSTextAlignment.center
             (view as! UITableViewHeaderFooterView).textLabel?.font = UIFont(name: "Arial", size: 12.0)
             (view as! UITableViewHeaderFooterView).textLabel?.backgroundColor = UIColor.white
             (view as! UITableViewHeaderFooterView).layer.addSublayer(shapeLayer)
         }
-    }
+    }*/
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 0.1
+            return 15
         }
-        return 10
+        return 15
     }
     
     
@@ -167,7 +189,24 @@ extension StartScreen: UITableViewDataSource {
         
         NSLog("You selected cell number: \(indexPath.row)!")
     }
+}
+
+class TableViewHeaderView: UITableViewCell
+{
+    @IBOutlet weak var labelText: UILabel!
     
-    
-    
+    override func draw(_ rect: CGRect) {
+        UIColor.lightGray.set()
+       drawLine(point1: CGPoint(x: rect.minX, y: rect.height / 2.0),
+                 point2: CGPoint(x: rect.maxX, y: rect.height / 2.0))
+        super.draw(rect)
+    }
+
+    private func drawLine(point1: CGPoint, point2: CGPoint) {
+        let path = UIBezierPath()
+
+        path.move(to: CGPoint(x: point1.x, y: point1.y))
+        path.addLine(to: CGPoint(x: point2.x, y: point2.y))
+        path.stroke()
+    }
 }
