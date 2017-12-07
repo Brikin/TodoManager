@@ -19,6 +19,9 @@ class StartScreen: UIViewController {
     var listsInSection = [["Inbox"], ["Important", "Focused"], ["New List"] ]
     var listIdentifier = ""
     
+    @IBOutlet weak var topBarHeight: NSLayoutConstraint!
+    
+    
     
     
     @IBOutlet weak var tableLists: UITableView!
@@ -28,8 +31,11 @@ class StartScreen: UIViewController {
 
     @IBAction func addTaskButtonTapped(_ sender: Any) {
         UIApplication.shared.statusBarView?.backgroundColor = topBar.barTintColor
+        topBarHeight.constant = 44
         textField.isEnabled = true
         self.navigationController?.isNavigationBarHidden = true
+      
+        
         textField.becomeFirstResponder()
     }
     
@@ -38,11 +44,15 @@ class StartScreen: UIViewController {
         textField.text = nil
         textField.isEnabled = false
         self.navigationController?.isNavigationBarHidden = false
-
+        topBarHeight.constant = 0
     }
     
     override func viewDidLoad() {
+        
      super.viewDidLoad()
+        self.viewDidLayoutSubviews()
+        topBarHeight.constant = 0
+        self.navigationController?.isNavigationBarHidden = false
         
     }
     
@@ -160,11 +170,14 @@ extension StartScreen: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 15
+            return 10
         }
-        return 15
+        return 10
     }
     
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 30
+//    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sectionsTitle.count

@@ -31,6 +31,7 @@ class TasksListTableController: UIViewController {
     
     override func viewDidLoad() {
         
+        
         super.viewDidLoad()
         if showSectionIndicator == 1 {
             showComplete.buttonShow.isEnabled = false

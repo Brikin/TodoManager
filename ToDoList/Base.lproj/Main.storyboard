@@ -15,7 +15,7 @@
             <objects>
                 <viewController title="Edit Task" id="aBa-Zw-SwT" customClass="TasksDetailsController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bW-Ve-4VJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="emk-sY-8cB">
@@ -48,26 +48,11 @@
             <objects>
                 <viewController id="GQ7-2B-fou" customClass="TasksListTableController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AX9-Fq-t4s">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wVZ-eU-vGN">
-                                <rect key="frame" x="0.0" y="559" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="GTa-mM-m8G"/>
-                                    <barButtonItem title="Add a task..." width="285" id="sOD-jW-Sf5">
-                                        <color key="tintColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <action selector="addTaskButtonTapped:" destination="GQ7-2B-fou" id="I05-iy-OgZ"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem systemItem="add" id="ZKn-Ij-QwC"/>
-                                </items>
-                            </toolbar>
-                            <toolbar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8NG-4o-WwB" userLabel="TopBar">
-                                <rect key="frame" x="0.0" y="-44" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <toolbar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8NG-4o-WwB" userLabel="TopBar">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="TextField" style="plain" id="nlx-Ff-hCa">
                                         <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="NJK-wN-9aW">
@@ -93,22 +78,8 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <tabBar hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BEY-2f-PUk">
-                                <rect key="frame" x="0.0" y="554" width="375" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <tabBarItem title="Today" id="4Aj-e4-Yvw"/>
-                                    <tabBarItem title="Tomorrow" id="G3d-H6-m46"/>
-                                    <tabBarItem title="Next Week" id="xPg-69-NLL"/>
-                                </items>
-                                <connections>
-                                    <outlet property="delegate" destination="GQ7-2B-fou" id="FNW-qo-cyy"/>
-                                </connections>
-                            </tabBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qhO-YJ-bB6">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qhO-YJ-bB6">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" id="NKE-JQ-a3W" customClass="TaskCell" customModule="ToDoList" customModuleProvider="target">
@@ -222,8 +193,46 @@
                                     <outlet property="delegate" destination="GQ7-2B-fou" id="0y5-aE-Xx5"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wVZ-eU-vGN">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="GTa-mM-m8G"/>
+                                    <barButtonItem title="Add a task..." width="285" id="sOD-jW-Sf5">
+                                        <color key="tintColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="addTaskButtonTapped:" destination="GQ7-2B-fou" id="I05-iy-OgZ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="add" id="ZKn-Ij-QwC"/>
+                                </items>
+                            </toolbar>
+                            <tabBar hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BEY-2f-PUk">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Today" id="4Aj-e4-Yvw"/>
+                                    <tabBarItem title="Tomorrow" id="G3d-H6-m46"/>
+                                    <tabBarItem title="Next Week" id="xPg-69-NLL"/>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="GQ7-2B-fou" id="FNW-qo-cyy"/>
+                                </connections>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="JxY-cZ-ILK" firstAttribute="bottom" secondItem="wVZ-eU-vGN" secondAttribute="bottom" id="6Yf-RQ-4Iw"/>
+                            <constraint firstItem="qhO-YJ-bB6" firstAttribute="top" secondItem="8NG-4o-WwB" secondAttribute="bottom" symbolic="YES" id="DGP-yb-e0c"/>
+                            <constraint firstItem="JxY-cZ-ILK" firstAttribute="trailing" secondItem="qhO-YJ-bB6" secondAttribute="trailing" id="Fhr-K4-iU6"/>
+                            <constraint firstItem="JxY-cZ-ILK" firstAttribute="trailing" secondItem="wVZ-eU-vGN" secondAttribute="trailing" id="GcT-FU-U3x"/>
+                            <constraint firstItem="8NG-4o-WwB" firstAttribute="top" secondItem="JxY-cZ-ILK" secondAttribute="top" id="KWB-ZO-nRX"/>
+                            <constraint firstItem="JxY-cZ-ILK" firstAttribute="trailing" secondItem="8NG-4o-WwB" secondAttribute="trailing" id="LVZ-Bj-Rvb"/>
+                            <constraint firstItem="wVZ-eU-vGN" firstAttribute="leading" secondItem="JxY-cZ-ILK" secondAttribute="leading" id="N03-AZ-rKg"/>
+                            <constraint firstItem="wVZ-eU-vGN" firstAttribute="top" secondItem="qhO-YJ-bB6" secondAttribute="bottom" symbolic="YES" id="O5f-Hq-zrv"/>
+                            <constraint firstItem="8NG-4o-WwB" firstAttribute="leading" secondItem="JxY-cZ-ILK" secondAttribute="leading" id="YG7-2J-OsI"/>
+                            <constraint firstItem="qhO-YJ-bB6" firstAttribute="leading" secondItem="JxY-cZ-ILK" secondAttribute="leading" id="mB8-Ae-6rM"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="JxY-cZ-ILK"/>
                     </view>
                     <navigationItem key="navigationItem" id="lMn-bt-2AE">
@@ -247,23 +256,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bn4-Lt-wrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="144.80000000000001" y="1019.640179910045"/>
+            <point key="canvasLocation" x="143.19999999999999" y="1018.7406296851575"/>
         </scene>
         <!--Start Screen-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="StartScreen" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hen-5x-ugw" userLabel="TopBar">
-                                <rect key="frame" x="0.0" y="-44" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <toolbar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hen-5x-ugw" userLabel="TopBar">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="njN-Hz-9mB"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="Sr4-jL-9uo"/>
                                 <items>
                                     <barButtonItem title="TextField" style="plain" id="Kjz-l8-1Ie">
                                         <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="kQf-Qf-3hr">
-                                            <rect key="frame" x="16" y="7" width="256" height="30"/>
+                                            <rect key="frame" x="16" y="7" width="25" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <edgeInsets key="layoutMargins" top="8" left="6" bottom="8" right="8"/>
                                             <nil key="textColor"/>
@@ -287,12 +299,11 @@
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="barTintColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uiq-jl-Yat">
-                                <rect key="frame" x="0.0" y="559" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uiq-jl-Yat">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="fwQ-rh-bQC"/>
-                                    <barButtonItem title="Add a task..." width="285" id="EqH-T6-tCv">
+                                    <barButtonItem title="Add a task..." width="285" style="plain" id="EqH-T6-tCv">
                                         <color key="tintColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="addTaskButtonTapped:" destination="BYZ-38-t0r" id="AJq-QA-fs4"/>
@@ -301,20 +312,19 @@
                                     <barButtonItem systemItem="add" id="J99-Zk-fqX"/>
                                 </items>
                             </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oUk-8W-W5K">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="30" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oUk-8W-W5K">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" id="gMO-QK-oOK" customClass="TableViewHeaderView" customModule="ToDoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gMO-QK-oOK" id="TP5-mW-1bN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelText" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90c-Xb-AHV">
-                                                    <rect key="frame" x="166.5" y="16" width="42.5" height="11"/>
+                                                    <rect key="frame" x="166.5" y="9.5" width="42.5" height="11"/>
                                                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                                     <nil key="textColor"/>
@@ -331,43 +341,64 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" id="1DZ-6J-I1N" customClass="ListCell" customModule="ToDoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="58" width="375" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1DZ-6J-I1N" id="qoz-2E-hyd">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Circle-PNG-Picture" translatesAutoresizingMaskIntoConstraints="NO" id="mWU-D2-yIz">
-                                                    <rect key="frame" x="314" y="12" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Circle-PNG-Picture" translatesAutoresizingMaskIntoConstraints="NO" id="mWU-D2-yIz">
+                                                    <rect key="frame" x="314" y="5" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="IhK-Rj-etr"/>
+                                                        <constraint firstAttribute="width" constant="20" id="oW7-yF-SSb"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqx-bk-A9F">
-                                                    <rect key="frame" x="317" y="15" width="15" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqx-bk-A9F">
+                                                    <rect key="frame" x="317" y="7.5" width="15" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="15" id="Jby-PX-HC2"/>
+                                                        <constraint firstAttribute="height" constant="15" id="fZi-IF-5Ma"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7t-ov-7RE">
-                                                    <rect key="frame" x="340" y="14" width="15" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7t-ov-7RE">
+                                                    <rect key="frame" x="340" y="7.5" width="15" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="3l5-7J-pf0"/>
+                                                        <constraint firstAttribute="width" constant="15" id="yRm-6S-6x7"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eb-BO-dJk">
-                                                    <rect key="frame" x="28" y="12" width="270" height="21"/>
+                                                    <rect key="frame" x="28" y="4.5" width="270" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="34S-6a-HWK"/>
+                                                        <constraint firstAttribute="width" constant="270" id="ilI-wR-Oef"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="2eb-BO-dJk" secondAttribute="trailing" constant="77" id="Gac-BR-tod"/>
-                                                <constraint firstItem="2eb-BO-dJk" firstAttribute="leading" secondItem="qoz-2E-hyd" secondAttribute="leading" constant="28" id="ZTs-wy-Gjw"/>
-                                                <constraint firstItem="2eb-BO-dJk" firstAttribute="centerY" secondItem="qoz-2E-hyd" secondAttribute="centerY" id="ufb-qc-f6m"/>
+                                                <constraint firstItem="mWU-D2-yIz" firstAttribute="leading" secondItem="2eb-BO-dJk" secondAttribute="trailing" constant="16" id="6Yl-Xb-U7r"/>
+                                                <constraint firstItem="b7t-ov-7RE" firstAttribute="leading" secondItem="mWU-D2-yIz" secondAttribute="trailing" constant="6" id="9iC-DZ-tLc"/>
+                                                <constraint firstItem="b7t-ov-7RE" firstAttribute="leading" secondItem="Jqx-bk-A9F" secondAttribute="trailing" constant="8" id="Nke-Nm-e6D"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="2eb-BO-dJk" firstAttribute="centerY" secondItem="1DZ-6J-I1N" secondAttribute="centerY" id="8gN-cL-04b"/>
+                                            <constraint firstItem="mWU-D2-yIz" firstAttribute="centerY" secondItem="1DZ-6J-I1N" secondAttribute="centerY" id="C7a-bF-2zj"/>
+                                            <constraint firstItem="b7t-ov-7RE" firstAttribute="centerY" secondItem="1DZ-6J-I1N" secondAttribute="centerY" id="Fm5-Hq-ZgU"/>
+                                            <constraint firstAttribute="trailing" secondItem="b7t-ov-7RE" secondAttribute="trailing" constant="20" id="I9s-Lz-RPv"/>
+                                            <constraint firstItem="Jqx-bk-A9F" firstAttribute="centerY" secondItem="1DZ-6J-I1N" secondAttribute="centerY" id="NHM-lh-QMb"/>
+                                            <constraint firstItem="2eb-BO-dJk" firstAttribute="leading" secondItem="1DZ-6J-I1N" secondAttribute="leading" constant="28" id="V6g-8A-Vq3"/>
+                                        </constraints>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="countOverdue" destination="Jqx-bk-A9F" id="hnV-uX-JoY"/>
@@ -377,29 +408,43 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SmartListButtonCell" id="COl-2G-2kl" customClass="SmartListButtonCell" customModule="ToDoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="116" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="88" width="375" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="COl-2G-2kl" id="tYd-sM-nfO" customClass="ListButtonCell" customModule="ToDoList" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgj-Jt-zIY">
-                                                    <rect key="frame" x="28" y="7" width="107" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Add a smart list"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dgj-Jt-zIY">
+                                                    <rect key="frame" x="28" y="4.5" width="331" height="21"/>
+                                                    <state key="normal">
+                                                        <attributedString key="attributedTitle">
+                                                            <fragment content="Add a smart list">
+                                                                <attributes>
+                                                                    <font key="NSFont" metaFont="system" size="15"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </state>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="dgj-Jt-zIY" secondAttribute="bottom" constant="4.5" id="7At-0m-KAZ"/>
+                                                <constraint firstItem="dgj-Jt-zIY" firstAttribute="leading" secondItem="tYd-sM-nfO" secondAttribute="leading" constant="28" id="TMi-tD-djm"/>
+                                                <constraint firstItem="dgj-Jt-zIY" firstAttribute="top" secondItem="tYd-sM-nfO" secondAttribute="top" constant="4.5" id="ZvZ-Os-R1n"/>
+                                                <constraint firstAttribute="trailing" secondItem="dgj-Jt-zIY" secondAttribute="trailing" constant="16" id="guz-8R-hGu"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListButtonCell" id="i2s-Em-jgd" customClass="ListButtonCell" customModule="ToDoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="160" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="118" width="375" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i2s-Em-jgd" id="9JK-NF-xVY" customClass="ListButtonCell" customModule="ToDoList" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynz-7l-v3R">
-                                                    <rect key="frame" x="86" y="7" width="64" height="30"/>
+                                                    <rect key="frame" x="155" y="0.0" width="64" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Add a list"/>
                                                 </button>
@@ -414,34 +459,48 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Uiq-jl-Yat" firstAttribute="top" secondItem="oUk-8W-W5K" secondAttribute="bottom" id="0fc-G4-oeQ"/>
+                            <constraint firstItem="oUk-8W-W5K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EQ5-0E-esw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Uiq-jl-Yat" secondAttribute="trailing" id="EeB-dR-j53"/>
+                            <constraint firstItem="Uiq-jl-Yat" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IBU-Wo-qzc"/>
+                            <constraint firstItem="oUk-8W-W5K" firstAttribute="top" secondItem="Hen-5x-ugw" secondAttribute="bottom" id="IQd-wD-5kR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Hen-5x-ugw" secondAttribute="trailing" id="Nmm-a1-Y4t"/>
+                            <constraint firstItem="Hen-5x-ugw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SVN-RT-auG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oUk-8W-W5K" secondAttribute="trailing" id="XbW-G9-tVR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="Hen-5x-ugw" secondAttribute="top" id="c7L-lq-8km"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Uiq-jl-Yat" secondAttribute="bottom" id="npn-s7-3Ys"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="zsf-po-qFT"/>
+                    <navigationItem key="navigationItem" id="x1l-IV-QBv"/>
                     <connections>
                         <outlet property="tableLists" destination="oUk-8W-W5K" id="5iD-9L-W6q"/>
                         <outlet property="textField" destination="kQf-Qf-3hr" id="V7q-m4-tA7"/>
                         <outlet property="topBar" destination="Hen-5x-ugw" id="0WM-O1-cae"/>
+                        <outlet property="topBarHeight" destination="njN-Hz-9mB" id="7Z8-za-061"/>
                         <segue destination="GQ7-2B-fou" kind="show" identifier="TaskList" id="8Sq-xH-Bbg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="144.80000000000001" y="124.58770614692655"/>
+            <point key="canvasLocation" x="143.19999999999999" y="123.68815592203899"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ral-jC-qAo">
             <objects>
-                <navigationController id="ahz-wz-PIH" sceneMemberID="viewController">
+                <navigationController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" navigationBarHidden="YES" id="ahz-wz-PIH" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="IHP-LE-Upt">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="UtX-SR-9YQ"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JuD-Su-d6s">
                         <autoresizingMask key="autoresizingMask"/>
+                        <viewLayoutGuide key="safeArea" id="qGl-EQ-6PC"/>
                     </toolbar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Suo-P3-V4m"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="jRm-5B-Nky"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VcX-h4-4q3" userLabel="First Responder" sceneMemberID="firstResponder"/>
