@@ -36,6 +36,8 @@ class TasksListTableController: UIViewController {
         if showSectionIndicator == 1 {
             showComplete.buttonShow.isEnabled = false
         }
+        
+        topBarHeight.constant = 0
       
         
         self.navigationItem.title = listIdentifier
@@ -44,7 +46,7 @@ class TasksListTableController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.navigationController?.isNavigationBarHidden = false
         refresh()
     }
     
@@ -55,6 +57,7 @@ class TasksListTableController: UIViewController {
         //     }
     }
     
+    @IBOutlet weak var topBarHeight: NSLayoutConstraint!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var tableTask: UITableView!
     @IBOutlet weak var toolbarView: UIToolbar!
@@ -63,6 +66,7 @@ class TasksListTableController: UIViewController {
     @IBOutlet weak var tabBarTomorrow: UITabBarItem!
     @IBOutlet weak var tabBarWeek: UITabBarItem!
     @IBOutlet weak var doneButtonForTabBar: UIBarButtonItem!
+    @IBOutlet weak var topBar: UIToolbar!
     
     @IBAction func doneTabBar(_ sender: Any) {
         tabBarView.isHidden = true
@@ -71,7 +75,9 @@ class TasksListTableController: UIViewController {
     }
     
     @IBAction func addTaskButtonTapped(_ sender: Any) {
+        UIApplication.shared.statusBarView?.backgroundColor = topBar.barTintColor
         self.navigationController?.isNavigationBarHidden = true
+        topBarHeight.constant = 44
         textField.isEnabled = true
         textField.becomeFirstResponder()
     }
@@ -81,6 +87,9 @@ class TasksListTableController: UIViewController {
         textField.text = nil
         textField.isEnabled = false
         self.navigationController?.isNavigationBarHidden = false
+        topBarHeight.constant = 0
+        UIApplication.shared.statusBarView?.backgroundColor = self.navigationController?.navigationBar.barTintColor
+        
         self.refresh()
     }
     
@@ -152,6 +161,7 @@ extension TasksListTableController: UITabBarDelegate {
 extension TasksListTableController: UITableViewDelegate {
     
 }
+
 
 extension TasksListTableController: UITableViewDataSource {
     
@@ -269,25 +279,22 @@ extension TasksListTableController: UITableViewDataSource {
         
         let section = indexPath.section
         let row = indexPath.row
-        
-        selectedTask = taskInSection[section][row]
-        
-        
-        let cell = tableView.cellForRow(at: indexPath) as! TaskCell
+    
+        guard let cell = tableView.cellForRow(at: indexPath) as? TaskCell else {return}
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(TasksListTableController.longTap))
         cell.addGestureRecognizer(longGesture)
-        //  let labelContent = cell.nameTaskLabel.text
+        selectedTask = taskInSection[section][row]
         NSLog("You selected cell number: \(indexPath.row)!")
     }
     
     @objc func longTap(gestureReconizer: UILongPressGestureRecognizer) {
-        
+        let longPress = gestureReconizer as UILongPressGestureRecognizer
+        _ = longPress.state
         print("Long tap")
         navigationItem.rightBarButtonItem?.isEnabled = true
         navigationItem.rightBarButtonItem?.title = "Done"
         
-        let longPress = gestureReconizer as UILongPressGestureRecognizer
-        _ = longPress.state
+        
         //let locationInView = longPress.location(in: tableTask)
         //  let indexPath = tableTask.indexPathForRow(at: locationInView)
         tabBarView.isHidden = false

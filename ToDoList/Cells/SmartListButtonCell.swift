@@ -11,5 +11,6 @@ import UIKit
 class SmartListButtonCell: UITableViewCell {
     
     
+    @IBOutlet weak var AddSmartListButton: UIButton!
     
 }
